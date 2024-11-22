@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import FlightsList from './components/FlightComponents/FlightList';
-import Navbar from './components/Navbar'; // Import the Navbar
+import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -21,12 +21,13 @@ function App() {
             element={<Navbar />}
           />
         </Routes>
-        {/* Define main routes */}
         <Routes>
           <Route
             path="/"
             element={
-                <FlightsList />
+                <ProtectedRoute>
+                    <FlightsList />
+                </ProtectedRoute>
             }
           />
         </Routes>

@@ -82,9 +82,6 @@ const FlightTable = ({ flights }) => {
 
   return (
     <div style={{ padding: '20px' }}>
-      {/*<h1 style={{ textAlign: 'center', marginBottom: '20px', color: '#0f1035' }}>*/}
-      {/*  Available Flights*/}
-      {/*</h1>*/}
       <Table
         columns={columns}
         dataSource={flights}

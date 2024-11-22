@@ -8,7 +8,7 @@ const { Option } = Select;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Use the navigate function from react-router-dom
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -21,7 +21,7 @@ const Register = () => {
         message: 'Registration Successful',
         description: response.data.message,
       });
-      navigate('/login'); // Redirect to login after successful registration
+      navigate('/login');
     } catch (error) {
       notification.error({
         message: 'Registration Failed',

@@ -1,4 +1,4 @@
-// src/components/FlightsList.js
+
 
 import React, { useEffect, useState } from 'react';
 import FlightTable from "./FlightTable.jsx";
@@ -10,7 +10,6 @@ const FlightsList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch flights from the backend API
     fetch('https://flight-booking-system-backend-9jvl.onrender.com/api/flights')
       .then(response => {
         if (!response.ok) {
@@ -27,10 +26,6 @@ const FlightsList = () => {
         setLoading(false);
       });
   }, []);
-
-  // if (loading) {
-  //   return <CustomLoader />;
-  // }
 
   if (error) {
     return <div className="text-center mt-5 text-red-500">Error: {error.message}</div>;
