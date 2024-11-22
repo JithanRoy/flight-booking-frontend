@@ -1,43 +1,36 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import backgroundImage from '../../public/assets/login-bg.jpg';
-import CustomButton from "../shared/custom-button/index.jsx"; // Adjust the path as necessary
-import { notification } from 'antd'; // Ant Design notification
+import CustomButton from "../shared/custom-button/index.jsx";
+import { notification } from 'antd';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Navigation hook
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Send login request to your API
       const response = await axios.post(
         'https://flight-booking-system-backend-9jvl.onrender.com/api/login',
         { email, password }
       );
 
-      // Extract token from response
       const { token } = response.data;
-
-      // Save token to local storage
       localStorage.setItem('token', token);
 
-      // Show success notification
       notification.success({
         message: 'Login Successful',
         description: 'You have successfully logged in.',
       });
 
-      // Redirect to default URL '/'
       navigate('/');
     } catch (error) {
-      // Show error notification
       notification.error({
         message: 'Login Failed',
         description: error.response?.data?.error || 'Invalid email or password.',
