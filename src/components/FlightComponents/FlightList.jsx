@@ -53,7 +53,7 @@ const FlightsList = () => {
   }
 
   return (
-    <div className="max-w-[100%] mx-auto p-4">
+    <div className="max-w-[95%] mx-auto p-4">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-extrabold text-teal-700 mx-auto">
           Available Flights
