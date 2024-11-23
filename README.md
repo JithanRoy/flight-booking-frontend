@@ -18,10 +18,8 @@ update, delete flight management.
 
 - User Authentication (Registration, Login, Logout)
 - Flight Search Engine
-- Booking Management System
 - Responsive and User-Friendly Interface
-- Admin Dashboard for Managing Flights and Bookings
-- User Profile Management
+- Admin Dashboard for Managing Flights
 
 ## Technologies Used
 
@@ -29,6 +27,8 @@ update, delete flight management.
 - **Tailwind CSS**: A utility-first CSS framework for styling.
 - **React Router DOM**: For handling routing in the application.
 - **Ant Design (antd)**: A UI component library for React.
+- **axios**: for handling API request.
+- **jwt-decode**: for handling token and user data.
 
 ## Installation
 
@@ -37,41 +37,43 @@ To get a local copy up and running, follow these steps:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/flight-booking-frontend.git
+   git clone https://github.com/JithanRoy/flight-booking-frontend
    cd flight-booking-frontend
 
-## Table of Contents
+2. **Install Dependencies**
+    bun install or any other package manager like npm or yarn
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
-- [License](#license)
+3. **Start the development Server**
+    bun run dev
 
-## Features
 
-- User Authentication (Registration, Login, Logout)
-- Flight Search Engine
-- Booking Management System
-- Responsive and User-Friendly Interface
-- Admin Dashboard for Managing Flights and Bookings
-- User Profile Management
+## Usage
 
-## Technologies Used
+- **Home Page**: 
+  - Search for flights using the search bar.
+  - add new flight details
+  - update the flight details
+  - delete the flight details
 
-- **React**: A JavaScript library for building user interfaces.
-- **Tailwind CSS**: A utility-first CSS framework for styling.
-- **React Router DOM**: For handling routing in the application.
-- **Ant Design (antd)**: A UI component library for React.
+- **Search Results**: 
+  - View available flights based on search criteria.
 
-## Installation
+- **Flight Details**: 
+  - Get detailed information about a selected flight.
 
-To get a local copy up and running, follow these steps:
+- **Admin Dashboard**: 
+  - Add, update, or delete flights.
 
-1. **Clone the Repository**
+##Folder Structure
 
-   ```bash
-   git clone https://github.com/your-username/flight-booking-frontend.git
-   cd flight-booking-frontend
+![img.png](img.png)
+
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
+
+## FAQ
+Frequently asked questions about the project will be listed here.
+
+## Contact
+For any inquiries or support, please contact jithanroyjony@gmail.com.
+
