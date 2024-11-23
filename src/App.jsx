@@ -5,6 +5,8 @@ import Register from './components/Register';
 import FlightsList from './components/FlightComponents/FlightList';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
+import EditFlight from "./components/FlightComponents/EditFlight.jsx";
+import CreateFlight from "./components/FlightComponents/CreateFlight.jsx";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
                 </ProtectedRoute>
             }
           />
+          <Route path="/edit/:id" element={<EditFlight />} />
+          <Route path="/create" element={<CreateFlight />} />
         </Routes>
       </div>
     </Router>

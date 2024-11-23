@@ -19,14 +19,14 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         <Button
           type="default"
-          className="bg-white text-teal-500 hover:bg-teal-600 hover:text-white"
+          className="bg-primary text-white hover:bg-teal-600 hover:text-white"
           onClick={() => navigate('/')}
         >
           Home
         </Button>
         <Button
           type="primary"
-          danger
+          className='bg-primary'
           onClick={handleLogout}
         >
           Logout

@@ -85,7 +85,7 @@ const Register = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading} className="w-full">
+            <Button type="primary" htmlType="submit" loading={loading} className="w-full bg-secondary hover:bg-teal">
               Register
             </Button>
           </Form.Item>
@@ -96,7 +96,7 @@ const Register = () => {
             className="text-accent underline hover:text-darkBlue transition"
             onClick={() => navigate('/login')}
           >
-            Login here
+            Sign IN
           </button>
         </div>
       </div>

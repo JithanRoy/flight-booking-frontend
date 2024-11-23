@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import backgroundImage from '../../public/assets/login-bg.jpg';
-import CustomButton from "../shared/custom-button/index.jsx";
+import { Form, Input, Button } from 'antd';
 import { notification } from 'antd';
 
 function Login() {
@@ -12,13 +12,13 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setLoading(true);
 
     try {
       const response = await axios.post(
         'https://flight-booking-system-backend-9jvl.onrender.com/api/login',
-        { email, password }
+        { email, password },
       );
 
       const { token } = response.data;
@@ -50,32 +50,51 @@ function Login() {
       }}
     >
       <div className="bg-teal px-20 py-20 rounded-xl shadow-2xl bg-opacity-40">
-        <h2 className="text-light text-3xl font-bold mb-6 text-center">Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-5">
-            <label className="block text-light mb-2 font-semibold">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 rounded-lg bg-light border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent transition duration-300"
-              required
-            />
-          </div>
-          <div className="mb-5">
-            <label className="block text-light mb-2 font-semibold">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 rounded-lg bg-light border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent transition duration-300"
-              required
-            />
-          </div>
-          <CustomButton variant="filled" type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-          </CustomButton>
-        </form>
+        <h2 className="text-light text-3xl font-bold mb-6 text-center">Sign IN</h2>
+        <Form
+          onFinish={handleSubmit}
+          layout="vertical"
+          className="max-w-md mx-auto"
+        >
+      <Form.Item
+        label="Email"
+        name="email"
+        rules={[
+          { required: true, message: 'Please enter your email' },
+          { type: 'email', message: 'Please enter a valid email' },
+        ]}
+      >
+        <Input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+        />
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please enter your password' }]}
+      >
+        <Input.Password
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Enter your password"
+        />
+      </Form.Item>
+
+      <Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={loading}
+          className="w-full bg-secondary"
+        >
+          {loading ? 'Logging in...' : 'Login'}
+        </Button>
+      </Form.Item>
+    </Form>
         <div className="text-center mt-4">
           <p className="text-light">Don't have an account?</p>
           <button
