@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import FlightTable from './FlightTable';
 import CustomLoader from '../../shared/custom-loader';
 
 const FlightsList = () => {
   const [flights, setFlights] = useState([]);
+  const [filteredFlights, setFilteredFlights] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
-    setFlights((prevFlights) => prevFlights.filter(flight => flight._id !== id));
-    console.log(flights);
-  }
+    setFlights((prevFlights) => prevFlights.filter((flight) => flight._id !== id));
+  };
 
   useEffect(() => {
     fetch('https://flight-booking-system-backend-9jvl.onrender.com/api/flights')
@@ -24,15 +25,26 @@ const FlightsList = () => {
       })
       .then((data) => {
         setFlights(data);
+        setFilteredFlights(data);
         setLoading(false);
       })
       .catch((error) => {
         setError(error);
         setLoading(false);
       });
-  }, [setFlights]);
+  }, []);
 
-
+  useEffect(() => {
+    const lowercasedTerm = searchTerm.toLowerCase();
+    const filtered = flights.filter(
+      (flight) =>
+        flight.airline.toLowerCase().includes(lowercasedTerm) ||
+        flight.origin.toLowerCase().includes(lowercasedTerm) ||
+        flight.destination.toLowerCase().includes(lowercasedTerm) ||
+        flight.flightNumber.toLowerCase().includes(lowercasedTerm)
+    );
+    setFilteredFlights(filtered);
+  }, [searchTerm, flights]);
 
   if (error) {
     return (
@@ -55,11 +67,24 @@ const FlightsList = () => {
         </button>
       </div>
 
+      <div className="mb-6">
+        <input
+          type="text"
+          placeholder="Search flights by airline, origin, destination, or flight number"
+          className="w-full p-3 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-600"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
       <div>
-        {loading ? <CustomLoader/> : <FlightTable key={flights.id} flights={flights} onDelete={handleDelete} />}
+        {loading ? (
+          <CustomLoader />
+        ) : (
+          <FlightTable flights={filteredFlights} onDelete={handleDelete} />
+        )}
       </div>
     </div>
-
   );
 };
 
